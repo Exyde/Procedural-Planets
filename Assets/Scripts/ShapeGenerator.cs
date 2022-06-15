@@ -5,14 +5,14 @@ using UnityEngine;
 public class ShapeGenerator
 {
     ShapeSettings _settings;
-    NoiseFilter[] _noiseFilters;
+    INoiseFilter[] _NoiseFilters;
         
     public ShapeGenerator(ShapeSettings settings) {
         _settings = settings;
-        _noiseFilters = new NoiseFilter[settings._noiseLayers.Length];
+        _NoiseFilters = new INoiseFilter[settings._noiseLayers.Length];
 
-        for(int i = 0; i < _noiseFilters.Length; i++) {
-            _noiseFilters[i] = new NoiseFilter(settings._noiseLayers[i]._noiseSettings);
+        for(int i = 0; i < _NoiseFilters.Length; i++) {
+            _NoiseFilters[i] = NoiseFilterFactory.CreateNoiseFilter(settings._noiseLayers[i]._noiseSettings);
         }
     }
 
@@ -21,19 +21,19 @@ public class ShapeGenerator
         float elevation = 0;
         float firstLayerValue = 0;
 
-        if (_noiseFilters.Length > 0) {
-            firstLayerValue = _noiseFilters[0].Evaluate(pointOnUnitSphere);
+        if (_NoiseFilters.Length > 0) {
+            firstLayerValue = _NoiseFilters[0].Evaluate(pointOnUnitSphere);
             if(_settings._noiseLayers[0].enabled) {
                 elevation = firstLayerValue;
             }
         }
 
-        for(int i = 1; i < _noiseFilters.Length; i++) {
+        for(int i = 1; i < _NoiseFilters.Length; i++) {
 
             if(_settings._noiseLayers[i].enabled) {
-                float mask = _settings._noiseLayers[0].useFirtLayerAsMask ? firstLayerValue : 1;
+                float mask = _settings._noiseLayers[i].useFirtLayerAsMask ? firstLayerValue : 1;
 
-                elevation += _noiseFilters[i].Evaluate(pointOnUnitSphere) * mask;
+                elevation += _NoiseFilters[i].Evaluate(pointOnUnitSphere) * mask;
             }
         }
 

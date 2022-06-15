@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoiseFilter
+public class SimpleNoiseFilter : INoiseFilter
 {
 
-    NoiseSettings _settings;
+    NoiseSettings.SimpleNoiseSettings _settings;
     Noise _noise = new Noise();
 
-    public NoiseFilter(NoiseSettings settings) {
+    public SimpleNoiseFilter(NoiseSettings.SimpleNoiseSettings settings) {
         _settings = settings;
     }
 
-    //Remap the noise from [-1, 1] to [0, 1]
     public float Evaluate(Vector3 point) {
         float noiseValue = 0;
         Vector3 center = _settings._center;
