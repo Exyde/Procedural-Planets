@@ -18,7 +18,6 @@ public class NoiseSettings {
     [ConditionalHide("_filterType", 1)]
     public RidgedNoiseSettings ridgedNoiseSettings;
 
-
     [System.Serializable]
     public class SimpleNoiseSettings
     {

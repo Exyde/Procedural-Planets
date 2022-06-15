@@ -22,7 +22,8 @@ public class Planet : MonoBehaviour
     [HideInInspector] public bool _shapeSettingFoldout;
     [HideInInspector] public bool _colorSettingFoldout;
 
-    ShapeGenerator _shapeGenerator;
+    ShapeGenerator _shapeGenerator = new ShapeGenerator();
+    ColorGenerator _colorGenerator = new ColorGenerator();
 
     [SerializeField, HideInInspector]
     MeshFilter[] _meshFilters;
@@ -31,7 +32,8 @@ public class Planet : MonoBehaviour
     void Initalize() {
 
 
-        _shapeGenerator = new ShapeGenerator(_shapeSettings);
+        _shapeGenerator.UpdateSettings(_shapeSettings);
+        _colorGenerator.UpdateSettings(_colorSettings);
 
         if (_meshFilters == null || _meshFilters.Length == 0)
             _meshFilters = new MeshFilter[6];
@@ -51,13 +53,14 @@ public class Planet : MonoBehaviour
                 GameObject meshObj = new GameObject("Mesh");
                 meshObj.transform.parent = this.transform;
 
-                meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
+                meshObj.AddComponent<MeshRenderer>();
                 _meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 _meshFilters[i].sharedMesh = new Mesh();
             }
 
-            _terrainFaces[i] = new TerrainFace(_shapeGenerator, _meshFilters[i].sharedMesh, _resolution, directions[i]);
+            _meshFilters[i].GetComponent<MeshRenderer>().sharedMaterial = _colorSettings.planetMaterial;
 
+            _terrainFaces[i] = new TerrainFace(_shapeGenerator, _meshFilters[i].sharedMesh, _resolution, directions[i]);
             bool renderFace = _faceRenderMask == FaceRenderMask.All || (int)_faceRenderMask - 1 == i;
             _meshFilters[i].gameObject.SetActive(renderFace);
         }
@@ -91,12 +94,12 @@ public class Planet : MonoBehaviour
                 _terrainFaces[i].ConstructMesh();
             }
         }
+
+        _colorGenerator.UpdateElevation(_shapeGenerator.elevationMinMax);
     }
 
     void GenerateColours() {
-        foreach (MeshFilter filter in _meshFilters) {
-            filter.GetComponent<MeshRenderer>().sharedMaterial.color = _colorSettings.planetColor;
-        }
+        _colorGenerator.UpdateColors();
     }
     #endregion
 }

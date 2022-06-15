@@ -6,14 +6,17 @@ public class ShapeGenerator
 {
     ShapeSettings _settings;
     INoiseFilter[] _NoiseFilters;
+    public MinMax elevationMinMax;
         
-    public ShapeGenerator(ShapeSettings settings) {
+    public void UpdateSettings(ShapeSettings settings) {
         _settings = settings;
         _NoiseFilters = new INoiseFilter[settings._noiseLayers.Length];
 
         for(int i = 0; i < _NoiseFilters.Length; i++) {
             _NoiseFilters[i] = NoiseFilterFactory.CreateNoiseFilter(settings._noiseLayers[i]._noiseSettings);
         }
+
+        elevationMinMax = new MinMax();
     }
 
     public Vector3 CalculatePointOnPlanet(Vector3 pointOnUnitSphere) {
@@ -37,6 +40,8 @@ public class ShapeGenerator
             }
         }
 
-        return pointOnUnitSphere * _settings._planetRadius * (1f + elevation);
+        elevation = _settings._planetRadius * (1f + elevation);
+        elevationMinMax.AddValue(elevation);
+        return pointOnUnitSphere * elevation;
     }
 }
