@@ -12,8 +12,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98259b66fe7b534898d0f4966f58c1d, type: 3}
   m_Name: Shape
   m_EditorClassIdentifier: 
-  _planetRadius: 2.47
-  _noiseSettings:
-    _strenght: 0.22
-    _roughness: 1.92
-    _center: {x: 0, y: 0, z: 0}
+  _planetRadius: 1.93
+  _noiseLayers:
+  - enabled: 1
+    useFirtLayerAsMask: 0
+    _noiseSettings:
+      _filterType: 0
+      simpleNoiseSettings:
+        _minValue: 0.72
+        _numLayers: 2
+        _strenght: 0.26
+        _baseRoughness: 2.2
+        _roughness: 4.13
+        _persistence: 0.329
+        _center: {x: 1.2, y: 0, z: 0}
+      ridgedNoiseSettings:
+        _minValue: 0
+        _numLayers: 0
+        _strenght: 0
+        _baseRoughness: 0
+        _roughness: 0
+        _persistence: 0
+        _center: {x: 0, y: 0, z: 0}
+        _weightMultiplier: 0
+  - enabled: 1
+    useFirtLayerAsMask: 1
+    _noiseSettings:
+      _filterType: 0
+      simpleNoiseSettings:
+        _minValue: 0.37
+        _numLayers: 2
+        _strenght: 1.84
+        _baseRoughness: 1.93
+        _roughness: 3.08
+        _persistence: 0.022
+        _center: {x: 0, y: 0, z: 0}
+      ridgedNoiseSettings:
+        _minValue: 0
+        _numLayers: 0
+        _strenght: 0
+        _baseRoughness: 0
+        _roughness: 0
+        _persistence: 0
+        _center: {x: 0, y: 0, z: 0}
+        _weightMultiplier: 0
+  - enabled: 1
+    useFirtLayerAsMask: 1
+    _noiseSettings:
+      _filterType: 1
+      simpleNoiseSettings:
+        _minValue: 0.37
+        _numLayers: 2
+        _strenght: 1.84
+        _baseRoughness: 1.93
+        _roughness: 3.08
+        _persistence: 0.022
+        _center: {x: 0, y: 0, z: 0}
+      ridgedNoiseSettings:
+        _minValue: 0.16
+        _numLayers: 2
+        _strenght: 2.51
+        _baseRoughness: 2.4
+        _roughness: 5.49
+        _persistence: 0.373
+        _center: {x: 0, y: 0, z: 0}
+        _weightMultiplier: 0.228
