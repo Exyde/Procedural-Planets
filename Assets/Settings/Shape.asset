@@ -19,13 +19,13 @@ MonoBehaviour:
     _noiseSettings:
       _filterType: 0
       simpleNoiseSettings:
-        _minValue: 0.72
-        _numLayers: 2
-        _strenght: 0.26
-        _baseRoughness: 2.2
-        _roughness: 4.13
-        _persistence: 0.329
-        _center: {x: 1.2, y: 0, z: 0}
+        _minValue: 0.587
+        _numLayers: 4
+        _strenght: 0.06
+        _baseRoughness: 1.448
+        _roughness: 3.35
+        _persistence: 0.309
+        _center: {x: 0, y: 0, z: 0}
       ridgedNoiseSettings:
         _minValue: 0
         _numLayers: 0
@@ -40,12 +40,12 @@ MonoBehaviour:
     _noiseSettings:
       _filterType: 0
       simpleNoiseSettings:
-        _minValue: 0.37
+        _minValue: 0
         _numLayers: 2
-        _strenght: 1.84
-        _baseRoughness: 1.93
-        _roughness: 3.08
-        _persistence: 0.022
+        _strenght: 3.99
+        _baseRoughness: 2.712
+        _roughness: 5.09
+        _persistence: 0.521
         _center: {x: 0, y: 0, z: 0}
       ridgedNoiseSettings:
         _minValue: 0
@@ -69,11 +69,11 @@ MonoBehaviour:
         _persistence: 0.022
         _center: {x: 0, y: 0, z: 0}
       ridgedNoiseSettings:
-        _minValue: 0.16
+        _minValue: 0
         _numLayers: 2
-        _strenght: 2.51
-        _baseRoughness: 2.4
-        _roughness: 5.49
-        _persistence: 0.373
+        _strenght: 1.68
+        _baseRoughness: 0.708
+        _roughness: 1.32
+        _persistence: 0.127
         _center: {x: 0, y: 0, z: 0}
-        _weightMultiplier: 0.228
+        _weightMultiplier: 0.03
