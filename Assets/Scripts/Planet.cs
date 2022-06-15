@@ -29,8 +29,12 @@ public class Planet : MonoBehaviour
     MeshFilter[] _meshFilters;
     TerrainFace[] _terrainFaces;
 
-    void Initalize() {
+    private void Awake()
+    {
+        GeneratePlanet();
+    }
 
+    void Initalize() {
 
         _shapeGenerator.UpdateSettings(_shapeSettings);
         _colorGenerator.UpdateSettings(_colorSettings);
@@ -99,7 +103,16 @@ public class Planet : MonoBehaviour
     }
 
     void GenerateColours() {
+
         _colorGenerator.UpdateColors();
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (_meshFilters[i].gameObject.activeSelf)
+            {
+                _terrainFaces[i].UpdateUVs(_colorGenerator);
+            }
+        }
     }
     #endregion
 }
