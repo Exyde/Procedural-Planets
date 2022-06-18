@@ -36,6 +36,16 @@ public class Planet : MonoBehaviour
 
     void Initalize() {
 
+        if (_shapeSettings == null){
+            _shapeSettings = ScriptableObject.CreateInstance("ShapeSettings") as ShapeSettings;
+            _shapeSettings.GenerateShapeSettings();
+        }
+
+        if (_colorSettings == null){
+            _colorSettings = ScriptableObject.CreateInstance("ColorSettings") as ColorSettings;
+            _colorSettings.GenerateColorSettings();
+        }
+
         _shapeGenerator.UpdateSettings(_shapeSettings);
         _colorGenerator.UpdateSettings(_colorSettings);
 
